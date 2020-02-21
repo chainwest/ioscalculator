@@ -21,11 +21,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.view.setGradientBackground(colorOne: Colors.blue, colorTwo: Colors.lavender)
+        self.view.setGradientBackground(colorOne: UIColor.blue, colorTwo: UIColor.lavender)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.view.setGradientBackground(colorOne: UIColor.blue, colorTwo: UIColor.lavender)
     }
 
     @IBAction func digitsButton(_ sender: UIButton) {
-        if mathSign == true {
+        if mathSign {
             resultLabel.text = String(sender.tag)
             mathSign = false
         } else {
@@ -36,7 +40,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func opeartionButton(_ sender: UIButton) {
-        if resultLabel.text != "" && sender.tag != 18 && sender.tag != 11 {
+        if !resultLabel.text!.isEmpty && sender.tag != 18 && sender.tag != 11 {
             numbaOne = Double(resultLabel.text!)!
             
             switch sender.tag {
